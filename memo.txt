@@ -1,0 +1,5 @@
+namu-recent
+
+*element가 List인 Queue에, 1초에 한번씩 recent 리스트 뽑아와서 하나씩 push하고, 접속한 5초 뒤부터 1초에 한번씩 pop
+
+일단 디자인은 신경쓰지 않고 동적으로 리스트 뽑아와서 출력하는 것만 해보기
