@@ -1,8 +1,13 @@
-namu-recent
+# namu-recent memo
 
+## Mechanism
 서버만 파이썬, 크롤링은 js, 텍스트는 canvas로 렌더링
 -> 모바일로 되는지 일단 테스트
 
 *element가 List인 Queue에, 1초에 한번씩 recent 리스트 뽑아와서 하나씩 push하고, 접속한 5초 뒤부터 1초에 한번씩 pop
 
 일단 디자인은 신경쓰지 않고 동적으로 리스트 뽑아와서 출력하는 것만 해보기
+
+## Design
+
+편집량이 많을수록 텍스트가 크게, 색깔로 편집 종류 구분(추가, 삭제)
