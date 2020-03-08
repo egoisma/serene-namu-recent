@@ -1,1 +1,1 @@
-# namu-recent
+# serene-namu-recent
