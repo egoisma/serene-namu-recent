@@ -6,7 +6,10 @@ api = Api(app)
 
 class GetData(Resource):
     def get(self):
-        return {'status': 'success'}
+
+# crawl here and return
+
+        return {'status': 'success'},  201, {'Access-Control-Allow-Origin': '*'}
 
 api.add_resource(GetData, '/get')
 
