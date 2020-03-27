@@ -1,10 +1,14 @@
 from flask import Flask
+from flask_restful import Resource, Api
 
 app = Flask(__name__)
-@app.route("/")
+api = Api(app)
 
-def hello():
-	return "<font size=7>Hello</font>"
+class GetData(Resource):
+    def get(self):
+        return {'status': 'success'}
 
-if __name__=="__main__":
-	app.run(host="localhost", port="80")
+api.add_resource(GetData, '/get')
+
+if __name__ == '__main__':
+    app.run(debug=True)
