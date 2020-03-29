@@ -21,7 +21,7 @@ def crawl():
 	soup = BeautifulSoup(html, 'lxml')
 
 	body = soup.body
-	data_list = dict()
+	data_list = {'wiki': {}}
 	for tr in body.article.tbody.find_all('tr'):
 		if(tr.td.a):
 			# 데이터 업데이트 후 크롤링 시 1초씩 늦어서 시간 매칭을 못 한다.
@@ -30,7 +30,7 @@ def crawl():
 			if now.strftime('%Y-%m-%d %H:%M')[8:] == time_text[8:-3]:
 				if int(now.strftime('%S'))-2 == int(time_text[-2:]):
 					print('->', tr.td.a.text, ',', int(tr.td.span.text[1:-1]))
-					data_list[tr.td.a.text] = int(tr.td.span.text[1:-1])
+					data_list['wiki'][tr.td.a.text]= int(tr.td.span.text[1:-1])
 	print()
 	return data_list
 
