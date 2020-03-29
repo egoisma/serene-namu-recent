@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>serene-namu-recent</title>
+        <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    </head>
+        <script type="text/javascript">
+            
+            function getData() {
+                $.ajax({
+                    type : 'GET',
+                    url : 'http://localhost:5000/data',
+                    data : {},
+                    success : function(data) {
+                        var ctx = document.getElementById('canvas').getContext('2d');
+                        //alert("success");
+                        var wiki = data["wiki"];
+                        for(var i=0; i<wiki.length; i++) {
+                            //$('<p>').text(wiki[i]["name"]+' '+wiki[i]["size"]).appendTo("body")
+                            ctx.font = Math.abs(wiki[i]["size"])/100+21.0+'px 돋움';
+                            if(wiki[i]["size"]<0) ctx.fillStyle = 'red';
+                            else ctx.fillStyle = 'green';
+                            ctx.shadowOffsetX = 3;
+                            ctx.shadowOffsetY = 3;
+                            ctx.shadowColor = "rgba(0,0,0,0.3)";
+                            ctx.shadowBlur = 4;
+                            ctx.fillText(wiki[i]["name"], Math.random()*(document.getElementById("canvas").offsetWidth-40)+20, Math.random()*480+10);
+
+                        }     
+                    },
+                    error : function() {
+                        alert("Failed");
+                    }
+                })
+            }
+            function start() {
+                timer_getData = setInterval(getData, 1000);
+            }
+            function stop() {
+                clearInterval(timer_getData);
+            }
+        </script>
+
+    <body>
+        <h1>serene namu recent</h1>
+        <button onclick="start()" style="width:100px; height:40px">시작</button>
+        <button onclick="stop()" style="width:100px; height:40px">중지</button>
+        <br /><br />
+        <canvas id="canvas" width="800" height="500"></canvas>
+    </body>
+</html>
