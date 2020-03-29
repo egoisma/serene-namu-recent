@@ -26,11 +26,12 @@
                             ctx.shadowColor = "rgba(0,0,0,0.3)";
                             ctx.shadowBlur = 4;
                             ctx.fillText(wiki[i]["name"], Math.random()*(document.getElementById("canvas").offsetWidth-40)+20, Math.random()*480+10);
-
+                            
                         }     
                     },
                     error : function() {
                         alert("Failed");
+                        clearInterval(timer_getData);
                     }
                 })
             }
