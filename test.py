@@ -23,7 +23,6 @@ def crawl(second=1.0):
         if(tr.td.a):
             if now.strftime('%Y-%m-%d %H:%M:%S')[8:] == tr.find_all('td')[2].time.text[8:]:
                 print(tr.td.a.text, tr.find_all('td')[2].time.text[8:])
-    print()
 
     threading.Timer(second, crawl, [second]).start()
 
