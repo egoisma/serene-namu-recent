@@ -9,29 +9,38 @@ app = Flask(__name__)
 api = Api(app)
 
 def crawl():
-    now = datetime.now(pytz.timezone('UTC'))
-    URL = 'https://namu.wiki/RecentChanges'
-    res = requests.get(URL)
+	now = datetime.now(pytz.timezone('UTC'))
+    
+	sec = now.strftime('%S')
 
-    print(res.status_code)
-    print()
-    html = res.text
-    soup = BeautifulSoup(html, 'lxml')
+	URL = 'https://namu.wiki/RecentChanges'
+	res = requests.get(URL)
 
-    body = soup.body
+	print('status:', res.status_code, now.strftime('%Y-%m-%d %H:%M:%S')[11:])
+	html = res.text
+	soup = BeautifulSoup(html, 'lxml')
 
-    for tr in body.article.tbody.find_all('tr'):
-        if(tr.td.a):
-            if now.strftime('%Y-%m-%d %H:%M:%S')[8:] == tr.find_all('td')[2].time.text[8:]:
-                print(tr.td.a.text, tr.find_all('td')[2].time.text[8:])
+	body = soup.body
+	data_list = dict()
+	for tr in body.article.tbody.find_all('tr'):
+		if(tr.td.a):
+			# 데이터 업데이트 후 크롤링 시 1초씩 늦어서 시간 매칭을 못 한다.
+			# -> 현재 시간의 1~2초 전 데이터를 가져온다.
+			time_text = tr.find_all('td')[2].time.text
+			if now.strftime('%Y-%m-%d %H:%M')[8:] == time_text[8:-3]:
+				if int(now.strftime('%S'))-2 == int(time_text[-2:]):
+					print('->', tr.td.a.text, ',', int(tr.td.span.text[1:-1]))
+					data_list[tr.td.a.text] = int(tr.td.span.text[1:-1])
+	print()
+	return data_list
 
 class GetData(Resource):
-    def get(self):
+	def get(self):
 		data_list = crawl()
-
-    	return {'status': 'success'},  201, {'Access-Control-Allow-Origin': '*'}
-
-api.add_resource(GetData, '/get')
+		print('datalist',data_list)
+		#return {'status': 'success'},  201, {'Access-Control-Allow-Origin': '*'}
+		return data_list,  201, {'Access-Control-Allow-Origin': '*'}
+api.add_resource(GetData, '/data')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
