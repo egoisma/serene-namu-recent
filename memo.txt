@@ -8,3 +8,8 @@
 ## UI
 
 * 데이터 업데이트 시 사운드 재생
+
+## Platform
+
+* Web
+* PyQt?
