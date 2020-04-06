@@ -6,6 +6,9 @@
         <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js" type="text/javascript" charset="utf-8"></script>
         <style>
+            body {
+                font-family:'돋움';
+            }
             h1 {
                 color : #00a495;
                 font-size : 46px;
@@ -17,7 +20,7 @@
                 outline: none;
                 font-size: 22px;
                 width: 398px;
-                height: 50px;
+                height: 54px;
             }
         </style>
     </head>
@@ -58,10 +61,10 @@
                         
                         var wiki = data["wiki"];
                         for(var i=0; i<wiki.length; i++) {
-                            var fontSize = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/5.0)+18.0);
+                            var fontSize = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/4.0)+18.0);
 
                             var x = Math.random()*(paperWidth-fontSize*(wiki[i]["name"].length+1))+fontSize*(wiki[i]["name"].length+1)/2;
-                            var y = Math.random()*(paperHeight-fontSize)+fontSize/2;
+                            var y = Math.random()*(paperHeight-(fontSize+2))+(fontSize+2)/2;
                             var color = wiki[i]["size"]>=0 ? 'green' : 'red';
 
                             var text = paper.text(x, y, wiki[i]["name"]);
@@ -71,13 +74,38 @@
                             text.attr({
                                 'fill' : color,
                                 'font-size' : fontSize,
-                                'font-family' : '돋움'
+                                'font-family' : '돋움',
+                                'fill-opacity' : 0.05
                             });
-                            sleep(100);
+
+                            var incOpacity = function() {
+                                text.attr({
+                                'fill-opacity' : text.attr('fill-opacity')+0.05
+                                });
+                            };
+                            
+                            var decOpacity = function() {
+                                text.attr({
+                                'fill-opacity' : text.attr('fill-opacity')-0.05
+                                });
+                            };
+
+                            var timer_incOpacity = setInterval(function() {
+                                if(text.attr('fill-opacity')<1) incOpacity();
+                                else clearInterval(timer_incOpacity);
+                            }, 50);
+
+                            setTimeout(function() {
+                                var timer_decOpacity = setInterval(function() {
+                                    if(text.attr('fill-opacity')>0) decOpacity();
+                                    else {
+                                        clearInterval(timer_decOpacity);
+                                        text.remove();
+                                    }
+                                }, 50);
+                            }, 7000);
+                            sleep(300);
                         }
-                        setTimeout(function() {
-                            text.remove();
-                        }, 7000)
                     },
                     error : function() {
                         alert("Get Failed");

@@ -12,7 +12,8 @@ api = Api(app)
 
 data_list = {'wiki': []} # 현재시간으로부터 delay 전까지의 크롤링 데이터를 담는다.
 
-def crawl(delay=10.0):
+DELAY = 10.0
+def crawl(delay=DELAY):
 	global data_list
 	data_list = {'wiki': []}
 	
@@ -54,7 +55,7 @@ class GetData(Resource):
 		now = datetime.now(pytz.timezone('UTC'))
 
 		for wiki in data_list['wiki']:
-			if(wiki['second']==int(now.strftime('%S'))-10): # 현재 시간에 해당하는 데이터를 전송 데이터에 담는다.
+			if( wiki['second']==int(now.strftime('%S'))-int(DELAY) ): # 현재 시간에 해당하는 데이터를 전송 데이터에 담는다.
 				send_list['wiki'].append({'name':wiki['name'], 'size':wiki['size']})
 
 		# print('send_list:', send_list)
@@ -62,7 +63,7 @@ class GetData(Resource):
 
 
 if __name__ == '__main__':
-	crawl(10.0)
+	crawl(DELAY)
 	
 	api.add_resource(GetData, '/data')
 	app.run(host='0.0.0.0')
