@@ -57,7 +57,7 @@ class GetData(Resource):
 			if(wiki['second']==int(now.strftime('%S'))-10): # 현재 시간에 해당하는 데이터를 전송 데이터에 담는다.
 				send_list['wiki'].append({'name':wiki['name'], 'size':wiki['size']})
 
-		print('send_list:', send_list)
+		# print('send_list:', send_list)
 		return send_list,  201, {'Access-Control-Allow-Origin': '*'}
 
 
