@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>serene-namu-recent</title>
+        <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    </head>
+        <script type="text/javascript">
+            
+            function getData() {
+                $.ajax({
+                    type : 'GET',
+                    url : 'http://localhost:5000/data',
+                    data : {},
+                    success : function(data) {
+                        var ctx = document.getElementById('canvas').getContext('2d');
+                        //alert("success");
+                        var wiki = data["wiki"];
+                        for(var i=0; i<wiki.length; i++) {
+
+                            ctx.font = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/30+18.0))+'px 돋움';
+                            if(wiki[i]["size"]<0) ctx.fillStyle = 'red';
+                            else ctx.fillStyle = 'green';
+                            ctx.shadowOffsetX = 1;
+                            ctx.shadowOffsetY = 1;
+                            ctx.shadowColor = "rgba(0,0,0,0.3)";
+                            ctx.shadowBlur = 2;
+                            
+                            ctx.fillText(wiki[i]["name"], Math.random()*(document.getElementById("canvas").offsetWidth-100)+50, Math.random()*460+20);
+                            setTimeout(function() {
+                                ctx.fillStyle='white';
+                                
+                            }, 3000);
+                        }     
+                    },
+                    error : function() {
+                        alert("Get Failed");
+                        clearInterval(timer_getData);
+                    }
+                })
+            }
+            function start() {
+                timer_getData = setInterval(getData, 1000);
+            }
+            function stop() {
+                clearInterval(timer_getData);
+            }
+            function ClearCanvas() {
+                console.log("clear");
+                var cvns = document.getElementById('canvas');
+                var ctx = cvns.getContext('2d');
+                ctx.clearRect(0, 0, cvns.width, cvns.height);
+                ctx.beginPath();
+            }
+
+            autoclear=false;
+            function AutoClear() {
+                if(!autoclear) {
+                    timer_clear = setInterval(ClearCanvas, 15000);
+                    autoclear = true;
+                    document.getElementById("state_autoclear").innerHTML = "On";
+                } else {
+                    clearInterval(timer_clear);
+                    autoclear = false;
+                    document.getElementById("state_autoclear").innerHTML = "Off";
+                }
+            }
+        </script>
+
+    <body>
+        <h1>serene namu recent</h1>
+        <button onclick="start()" style="width:100px; height:40px">시작</button>
+        <button onclick="stop()" style="width:100px; height:40px">중지</button>
+        <button onclick="ClearCanvas()" style="width:100px; height:40px">백지화</button>
+        <button onclick="AutoClear()" style="width:100px; height:40px">자동 백지화</button>
+        <br /><br />
+        자동 백지화: <span id="state_autoclear">Off</span>
+        <br /><br />
+        <canvas id="canvas" width="800" height="500" style="border:1px dashed black"></canvas>
+        <br />
+        Copyright 2020. Kihun Jang. All rights reserved.
+    </body>
+</html>
