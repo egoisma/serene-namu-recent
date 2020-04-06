@@ -20,12 +20,21 @@
             <!-- Copyright 2020. Kihun Jang. All rights reserved. -->
         </div>
         <script type="text/javascript">
+            
             let paperWidth = 900;
             let paperHeight = 500;
             var paper = Raphael(document.getElementById('svg'), paperWidth, paperHeight);
             paper.rect(0, 0, paperWidth, paperHeight);
+
+            //var audio = new Audio("./sound/waterdrop.mp3");
+            //audio.volume=1;
+
             var timer_getData = setInterval(getData, 1000);
             
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
             function getData() {
                 $.ajax({
                     type : 'GET',
@@ -38,14 +47,18 @@
                             var fontSize = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/5.0)+18.0);
                             var x = Math.random()*(paperWidth-fontSize*wiki[i]["name"].length)+fontSize*wiki[i]["name"].length/2;
                             var y = Math.random()*(paperHeight-fontSize)+fontSize/2;
-                            var text = paper.text(x, y, wiki[i]["name"]);
                             var color = wiki[i]["size"]>=0 ? 'green' : 'red';
+
+                            var text = paper.text(x, y, wiki[i]["name"]);
+
+                            //audio.play();
 
                             text.attr({
                                 'fill' : color,
                                 'font-size' : fontSize,
                                 'font-family' : '돋움'
                             });
+                            sleep(100);
                         }
                         setTimeout(function() {
                             text.remove();
