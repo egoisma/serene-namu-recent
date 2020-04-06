@@ -50,9 +50,9 @@ class GetData(Resource):
 	def get(self):
 		print('data_list:',data_list)
 		return data_list,  201, {'Access-Control-Allow-Origin': '*'}
-api.add_resource(GetData, '/data')
 
-crawl(1.0)
 if __name__ == '__main__':
+	api.add_resource(GetData, '/data')
 	app.run(host='0.0.0.0')
-	
+
+	crawl(1.0)
