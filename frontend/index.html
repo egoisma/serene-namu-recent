@@ -68,7 +68,7 @@
                             var y = Math.random()*(paperHeight-(fontSize+2))+(fontSize+2)/2;
                             var color = wiki[i]["size"]>=0 ? 'green' : 'red';
 
-                            var text = paper.text(x, y, wiki[i]["name"]);
+                            var text = paper.text(x, y, wiki[i]["name"]); // var 사용하면 변수의 scope가 function 최상단이 된다는데..
                             console.log("new wiki: " + wiki[i]["name"]);
                             //audio.play(); // not working
 
