@@ -10,3 +10,6 @@ python server/server.py
 
 ## Front-end
 * frontend/index.html
+
+## License
+MIT © Kihun Jang
