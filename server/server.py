@@ -10,7 +10,7 @@ app = Flask(__name__)
 api = Api(app)
 
 
-data_list = {'wiki': []} # 현재시간으로부터 delay 이전까지의 크롤링 데이터를 담는다.
+data_list = {'wiki': []} # 현재시간으로부터 delay 전까지의 크롤링 데이터를 담는다.
 
 def crawl(delay=10.0):
 	global data_list
