@@ -30,8 +30,7 @@ def crawl(delay=DELAY):
 		body = soup.body
 		for tr in body.article.tbody.find_all('tr'):
 			if(tr.td.a):
-				# 지난 delay 시간 동안의 모든 데이터를 시간 포함해서 다른 리스트에 저장해놓고
-				# getData()에서 그 리스트의 값 중 지금 시간과 맞는 것을 data_list에 추가 후 전송하도록 바꾸기
+				# 지난 delay 시간 동안의 모든 데이터를 시간 포함해서 data_list에 저장함
 
 				time_text = tr.find_all('td')[2].time.text
 				if now.strftime('%Y-%m-%d %H:%M')[8:] == time_text[8:-3]: # match day, hour, and minute
