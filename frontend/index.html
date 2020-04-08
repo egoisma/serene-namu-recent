@@ -7,7 +7,7 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js" type="text/javascript" charset="utf-8"></script>
         <style>
             body {
-                font-family:'돋움';
+                font-family: '돋움', 'Dotum', '돋움체', 'DotumChe';
             }
             h1 {
                 color : #00a495;
@@ -63,13 +63,13 @@
                         
                         var wiki = data["wiki"];
                         for(var i=0; i<wiki.length; i++) {
-                            var fontSize = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/4.0)+18.0);
+                            let fontSize = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/4.0)+18.0);
 
-                            var x = Math.random()*(paperWidth-fontSize*(wiki[i]["name"].length+1))+fontSize*(wiki[i]["name"].length+1)/2;
-                            var y = Math.random()*(paperHeight-(fontSize+2))+(fontSize+2)/2;
-                            var color = wiki[i]["size"]>=0 ? 'green' : 'red';
+                            let x = Math.random()*(paperWidth-fontSize*(wiki[i]["name"].length+1))+fontSize*(wiki[i]["name"].length+1)/2;
+                            let y = Math.random()*(paperHeight-(fontSize+2))+(fontSize+2)/2;
+                            let color = wiki[i]["size"]>=0 ? 'green' : 'red';
 
-                            var text = paper.text(x, y, wiki[i]["name"]);
+                            let text = paper.text(x, y, wiki[i]["name"]);
                             // var 사용하면 변수의 scope가 function 최상단이 된다는데..
                             // -> let 사용해보기(for문 바깥에서 먼저 선언ㄴ)
 
