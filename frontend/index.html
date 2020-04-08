@@ -70,8 +70,6 @@
                             let color = wiki[i]["size"]>=0 ? 'green' : 'red';
 
                             let text = paper.text(x, y, wiki[i]["name"]);
-                            // var 사용하면 변수의 scope가 function 최상단이 된다는데..
-                            // -> let 사용해보기(for문 바깥에서 먼저 선언ㄴ)
 
                             console.log("new wiki: " + wiki[i]["name"]);
                             //audio.play(); // not working
