@@ -20,7 +20,12 @@ python server/server.py
 ```
 
 ## Front-end
+
 * frontend/index.html
+
+## Video
+
+[![실행 영상](https://www.youtube.com/watch?v=lZQRZOzAZ9U/0.jpg)](https://www.youtube.com/watch?v=lZQRZOzAZ9U)
 
 ## License
 MIT © Kihun Jang
