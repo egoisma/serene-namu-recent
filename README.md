@@ -1,6 +1,6 @@
 # serene-namu-recent
 
-나무위키 최근편집 항목들을 더 역동적으로 보여줍니다.
+나무위키 최근편집 항목들을 더 역동적으로 보여주는 웹어플리케이션입니다.
 
 ## External Python modules
 
