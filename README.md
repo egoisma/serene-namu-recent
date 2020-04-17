@@ -1,6 +1,6 @@
 # serene-namu-recent
 
-나무위키 최근편집 항목들을 더 역동적으로 보여줍니다.
+나무위키 최근편집 항목들을 더 역동적으로 보여주는 웹어플리케이션입니다.
 
 ## External Python modules
 
@@ -20,7 +20,12 @@ python server/server.py
 ```
 
 ## Front-end
+
 * frontend/index.html
+
+## Video
+
+[![실행 영상](http://img.youtube.com/vi/lZQRZOzAZ9U/0.jpg)](https://www.youtube.com/watch?v=lZQRZOzAZ9U)
 
 ## License
 MIT © Kihun Jang

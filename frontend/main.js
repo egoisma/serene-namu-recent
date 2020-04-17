@@ -1,6 +1,7 @@
+const paperWidth = 800;
+const paperHeight = 400;
+
 $(document).ready(function() {
-    paperWidth = 800;
-    paperHeight = 400;
     paper = Raphael(document.getElementById('svg'), paperWidth, paperHeight);
     paper.rect(0, 0, paperWidth, paperHeight);
 
@@ -23,13 +24,14 @@ function getData() {
             
             var wiki = data["wiki"];
             for(var i=0; i<wiki.length; i++) {
-                var fontSize = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/4.0)+18.0);
+                let fontSize = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/4.0)+18.0);
 
-                var x = Math.random()*(paperWidth-fontSize*(wiki[i]["name"].length+1))+fontSize*(wiki[i]["name"].length+1)/2;
-                var y = Math.random()*(paperHeight-(fontSize+2))+(fontSize+2)/2;
-                var color = wiki[i]["size"]>=0 ? 'green' : 'red';
+                let x = Math.random()*(paperWidth-fontSize*(wiki[i]["name"].length+1))+fontSize*(wiki[i]["name"].length+1)/2;
+                let y = Math.random()*(paperHeight-(fontSize+2))+(fontSize+2)/2;
+                let color = wiki[i]["size"]>=0 ? 'green' : 'red';
 
-                var text = paper.text(x, y, wiki[i]["name"]); // var 사용하면 변수의 scope가 function 최상단이 된다는데..
+                let text = paper.text(x, y, wiki[i]["name"]);
+
                 console.log("new wiki: " + wiki[i]["name"]);
                 //audio.play(); // not working
 
@@ -40,15 +42,17 @@ function getData() {
                     'fill-opacity' : 0.05
                 });
 
+                const opac_trans_speed = 0.05;
+
                 var incOpacity = function() {
                     text.attr({
-                    'fill-opacity' : text.attr('fill-opacity')+0.05
+                    'fill-opacity' : text.attr('fill-opacity') + opac_trans_speed
                     });
                 };
                 
                 var decOpacity = function() {
                     text.attr({
-                    'fill-opacity' : text.attr('fill-opacity')-0.05
+                    'fill-opacity' : text.attr('fill-opacity') - opac_trans_speed
                     });
                 };
 
