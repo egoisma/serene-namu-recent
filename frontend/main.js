@@ -1,9 +1,10 @@
-const paperWidth = 800;
-const paperHeight = 400;
+const PAPER_WIDTH = 800;
+const PAPER_HEIGHT = 400;
+const OPAC_TRANS_SPEED = 0.05;
 
 $(document).ready(function() {
-    paper = Raphael(document.getElementById('svg'), paperWidth, paperHeight);
-    paper.rect(0, 0, paperWidth, paperHeight);
+    paper = Raphael(document.getElementById('svg'), PAPER_WIDTH, PAPER_HEIGHT);
+    paper.rect(0, 0, PAPER_WIDTH, PAPER_HEIGHT);
 
     //var audio = new Audio("./sound/waterdrop.mp3");
     //audio.volume=1;
@@ -26,8 +27,8 @@ function getData() {
             for(var i=0; i<wiki.length; i++) {
                 let fontSize = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/4.0)+18.0);
 
-                let x = Math.random()*(paperWidth-fontSize*(wiki[i]["name"].length+1))+fontSize*(wiki[i]["name"].length+1)/2;
-                let y = Math.random()*(paperHeight-(fontSize+2))+(fontSize+2)/2;
+                let x = Math.random()*(PAPER_WIDTH-fontSize*(wiki[i]["name"].length+1))+fontSize*(wiki[i]["name"].length+1)/2;
+                let y = Math.random()*(PAPER_HEIGHT-(fontSize+2))+(fontSize+2)/2;
                 let color = wiki[i]["size"]>=0 ? 'green' : 'red';
 
                 let text = paper.text(x, y, wiki[i]["name"]);
@@ -42,17 +43,15 @@ function getData() {
                     'fill-opacity' : 0.05
                 });
 
-                const opac_trans_speed = 0.05;
-
                 var incOpacity = function() {
                     text.attr({
-                    'fill-opacity' : text.attr('fill-opacity') + opac_trans_speed
+                    'fill-opacity' : text.attr('fill-opacity') + OPAC_TRANS_SPEED
                     });
                 };
                 
                 var decOpacity = function() {
                     text.attr({
-                    'fill-opacity' : text.attr('fill-opacity') - opac_trans_speed
+                    'fill-opacity' : text.attr('fill-opacity') - OPAC_TRANS_SPEED
                     });
                 };
 
