@@ -79,11 +79,13 @@ function getData() {
         }
     })
 }
+
 function start() {
     clearInterval(timer_getData);
     timer_getData = setInterval(getData, 1000);
     document.getElementById("state_getdata").innerHTML = "On";
 }
+
 function stop() {
     clearInterval(timer_getData);
     document.getElementById("state_getdata").innerHTML = "Off";
