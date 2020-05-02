@@ -15,8 +15,8 @@
 
 You have to install external Python modules first.
 
-```
-python server/server.py
+```bash
+haru@flow:~$ python server/server.py
 ```
 
 ## Front-end
