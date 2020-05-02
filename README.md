@@ -15,7 +15,7 @@
 
 You have to install external Python modules first.
 
-```bash
+```console
 haru@flow:~$ python server/server.py
 ```
 
