@@ -15,9 +15,7 @@
 
 You have to install external Python modules first.
 
-```console
-haru@flow:~$ python server/server.py
-```
+- <code>python server/server.py</code>
 
 ## Front-end
 
