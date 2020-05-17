@@ -2,7 +2,7 @@
 
 나무위키 최근편집 항목들을 더 역동적으로 보여주는 웹어플리케이션입니다.
 
-## External Python modules
+## Required Python modules
 
 * flask
 * flask_restful
@@ -13,7 +13,7 @@
 
 ## Executing API Server
 
-You have to install external Python modules first.
+You have to install required Python modules first.
 
 - <code>python server/server.py</code>
 
