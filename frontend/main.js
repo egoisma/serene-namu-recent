@@ -2,6 +2,9 @@ const PAPER_WIDTH = 800;
 const PAPER_HEIGHT = 400;
 const OPAC_TRANS_SPEED = 0.05;
 
+let timer_getData;
+let paper;
+
 $(document).ready(function() {
     paper = Raphael(document.getElementById('svg'), PAPER_WIDTH, PAPER_HEIGHT);
     paper.rect(0, 0, PAPER_WIDTH, PAPER_HEIGHT);
@@ -23,8 +26,8 @@ function getData() {
         data : {},
         success : function(data) {
             
-            var wiki = data["wiki"];
-            for(var i=0; i<wiki.length; i++) {
+            const wiki = data["wiki"];
+            for(let i=0; i<wiki.length; i++) {
                 let fontSize = (Math.abs(wiki[i]["size"])>50 ? 50 : Math.abs(wiki[i]["size"]/4.0)+18.0);
 
                 let x = Math.random()*(PAPER_WIDTH-fontSize*(wiki[i]["name"].length+1))+fontSize*(wiki[i]["name"].length+1)/2;
@@ -43,25 +46,25 @@ function getData() {
                     'fill-opacity' : 0.05
                 });
 
-                var incOpacity = function() {
+                let incOpacity = function() {
                     text.attr({
                     'fill-opacity' : text.attr('fill-opacity') + OPAC_TRANS_SPEED
                     });
                 };
                 
-                var decOpacity = function() {
+                let decOpacity = function() {
                     text.attr({
                     'fill-opacity' : text.attr('fill-opacity') - OPAC_TRANS_SPEED
                     });
                 };
 
-                var timer_incOpacity = setInterval(function() {
+                let timer_incOpacity = setInterval(function() {
                     if(text.attr('fill-opacity')<1) incOpacity();
                     else clearInterval(timer_incOpacity);
                 }, 50);
 
                 setTimeout(function() {
-                    var timer_decOpacity = setInterval(function() {
+                    let timer_decOpacity = setInterval(function() {
                         if(text.attr('fill-opacity')>0) decOpacity();
                         else {
                             clearInterval(timer_decOpacity);
