@@ -26,4 +26,4 @@ You have to install required Python modules first.
 [![실행 영상](http://img.youtube.com/vi/lZQRZOzAZ9U/0.jpg)](https://www.youtube.com/watch?v=lZQRZOzAZ9U)
 
 ## License
-MIT © Kihun Jang
+MIT © 2020. Kihun Jang
