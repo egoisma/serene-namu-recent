@@ -14,13 +14,10 @@ let start, stop;
         paper = Raphael(document.getElementById('svg'), PAPER_WIDTH, PAPER_HEIGHT);
         paper.rect(0, 0, PAPER_WIDTH, PAPER_HEIGHT);
 
-        //var audio = new Audio("./sound/waterdrop.mp3");
-        //audio.volume=1;
-
         timer_getData = setInterval(getData, 1000);
     });
 
-    function sleep(ms) { // 다른 곳에서 가져온 코드
+    function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
@@ -40,7 +37,6 @@ let start, stop;
                         let text = paper.text(x, y, wiki[i]["name"]);
 
                         console.log("new wiki: " + wiki[i]["name"]);
-                        //audio.play(); // not working
 
                         text.attr({
                             'fill' : color,

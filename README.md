@@ -19,7 +19,7 @@ You have to install required Python modules first.
 
 ## Front-end
 
-* frontend/index.html
+* [front/](front/)
 
 ## Video
 
