@@ -17,14 +17,10 @@ let start, stop;
         timer_getData = setInterval(getData, 1000);
     });
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     function getData() {
         fetch('http://localhost:5000/data')
             .then((res) => {
-                res.json().then((json) => {
+                res.json().then(async (json) => {
                     const wiki = json["wiki"];
 
                     for(let i=0; i<wiki.length; i++) {
@@ -71,8 +67,6 @@ let start, stop;
                                 }
                             }, 50);
                         }, 7000);
-
-                        sleep(300);
                     }
                 })
             })
