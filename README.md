@@ -1,6 +1,6 @@
 # serene-namu-recent
 
-나무위키 최근편집 항목들을 더 역동적으로 보여주는 웹어플리케이션입니다.
+나무위키 최근편집 항목들을 더 역동적으로 보여주는 웹서비스입니다.
 
 ## Required Python modules
 
@@ -12,8 +12,6 @@
 * pytz
 
 ## Executing API Server
-
-You have to install required Python modules first.
 
 - <code>python server/server.py</code>
 
