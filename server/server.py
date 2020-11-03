@@ -10,7 +10,7 @@ app = Flask(__name__)
 api = Api(app)
 
 
-data_list = {'wiki': []} # 현재시간으로부터 delay 전까지의 크롤링 데이터를 담는다.
+data_list = {'wiki': []}  # 현재시간으로부터 delay 전까지의 크롤링 데이터를 담는다.
 
 DELAY = 10.0
 def crawl(delay=DELAY):
@@ -31,7 +31,6 @@ def crawl(delay=DELAY):
 		for tr in body.article.tbody.find_all('tr'):
 			if(tr.td.a):
 				# 지난 delay 시간 동안의 모든 데이터를 시간 포함해서 data_list에 저장함
-
 				time_text = tr.find_all('td')[2].time.text
 				if now.strftime('%Y-%m-%d %H:%M')[8:] == time_text[8:-3]: # match day, hour, and minute
 
@@ -50,7 +49,7 @@ def crawl(delay=DELAY):
 
 class GetData(Resource):
 	def get(self):
-		send_list = {'wiki': []} # 전송 데이터를 담는다.
+		send_list = {'wiki': []}  # 전송 데이터를 담는다.
 		now = datetime.now(pytz.timezone('UTC'))
 
 		for wiki in data_list['wiki']:
